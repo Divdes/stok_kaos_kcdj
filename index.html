@@ -218,6 +218,7 @@ body {
 <div class="input-beli">
 <select id="sizeSelect"></select>
 <input type="number" id="jumlahBeli" value="1" min="1" max="99">
+<button class="btn-beli-back" onclick="backBeli()" title="Kembalikan">↺</button>
 <button onclick="beli()">Jual</button>
 </div>
 
@@ -281,6 +282,8 @@ function jual(u) { if (stok[u] > 0) { stok[u]--; const now = new Date(); const t
 function back(u) { if (stok[u] < AWAL[u]) { stok[u]++; const now = new Date(); const tglStr = now.toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-'); logs.unshift({tgl:tglStr, jam:now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}), ukuran:u+' +1', harga:'kembali'}); if (logs.length > 100) logs.pop(); update(); } }
 function beli() { const u = document.getElementById('sizeSelect').value; const j = parseInt(document.getElementById('jumlahBeli').value) || 1; if (!u || j < 1) { alert('Pilih ukuran dan jumlah'); return; } if (stok[u] < j) { alert('Stok '+u+' cuma '+stok[u]); return; } stok[u] -= j; const ttl = (j * HARGA[u]).toLocaleString('id-ID'); const now = new Date(); const tglStr = now.toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-'); logs.unshift({tgl:tglStr, jam:now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}), ukuran:u+' x'+j, harga:ttl}); if (logs.length > 100) logs.pop(); update(); }
 
+function backBeli() { const u = document.getElementById('sizeSelect').value; const j = parseInt(document.getElementById('jumlahBeli').value) || 1; if (!u || j < 1) { alert('Pilih ukuran dan jumlah'); return; } if (stok[u] + j > AWAL[u]) { alert('Stok '+u+' sudah penuh ('+stok[u]+'/'+AWAL[u]+')'); return; } stok[u] += j; const now = new Date(); const tglStr = now.toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-'); logs.unshift({tgl:tglStr, jam:now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}), ukuran:u+' +'+j, harga:'kembali'}); if (logs.length > 100) logs.pop(); update(); }
+
 function resetStok() { if (!confirm('Reset stok & riwayat?')) return; UKURAN.forEach(u => stok[u] = AWAL[u]); logs = []; update(); }
 
 function logUpdate() {
@@ -298,3 +301,5 @@ muat(); update();
 </script>
 </body>
 </html>
+
+
