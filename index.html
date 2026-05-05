@@ -89,7 +89,9 @@ body {
 .stok-card .harga-card { font-size: 10px; color: #81c784; font-weight: 600; background: rgba(76, 175, 80, 0.12); display: inline-block; padding: 2px 8px; border-radius: 8px; margin-top: 3px; }
 .stok-card .jumlah { font-size: 32px; font-weight: 800; color: #e0e0e0; margin: 6px 0; line-height: 1; }
 .stok-card .stok-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
-.stok-card .stok-awal { font-size: 9px; color: #666; margin-top: 2px; }
+.stok-card .stok-row { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; font-size: 11px; color: #999; margin: 3px 0; }
+    .stok-card .stok-row .jumlah { font-size: 24px; font-weight: 800; color: #e0e0e0; margin: 0; line-height: 1; }
+    .stok-card .stok-row .stok-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
 .stok-card .progress-wrap { background: rgba(255,255,255,0.06); border-radius: 10px; height: 3px; margin: 8px 12px 0; overflow: hidden; }
 .stok-card .progress-fill { height: 100%; background: linear-gradient(90deg, #ff0080, #4a00e0); border-radius: 10px; transition: width 0.5s ease; }
 .stok-card .actions { margin-top: 10px; display: flex; gap: 6px; justify-content: center; }
@@ -165,7 +167,8 @@ body {
     .stok-card .harga-card { font-size: 9px; padding: 1px 6px; }
     .stok-card .jumlah { font-size: 22px; margin: 4px 0; }
     .stok-card .stok-label { font-size: 9px; }
-    .stok-card .stok-awal { font-size: 8px; }
+    .stok-card .stok-row { font-size: 10px; }
+    .stok-card .stok-row .jumlah { font-size: 20px; }
     .stok-card .progress-wrap { height: 2px; margin: 6px 8px 0; }
     .stok-card .actions { margin-top: 8px; gap: 4px; }
     .stok-card .actions button { font-size: 11px; padding: 4px 6px; border-radius: 6px; }
@@ -266,7 +269,8 @@ function update() {
         const pct = Math.round((stok[u]/max)*100);
         const card = document.createElement('div');
         card.className = 'stok-card';
-        card.innerHTML = `<div class="ukuran">${u}</div><div class="harga-card">Rp${HARGA[u].toLocaleString('id-ID')}</div><div class="jumlah">${stok[u]}</div><div class="stok-label">Sisa</div><div class="stok-awal">Stok awal: ${AWAL[u]}</div><div class="progress-wrap"><div class="progress-fill" style="width:${pct}%"></div></div><div class="actions"><button class="btn-back" onclick="back('${u}')" title="Kembalikan 1">↺</button><button class="btn-jual" onclick="jual('${u}')" ${stok[u]<=0?'disabled':''}>Jual</button></div>`;
+        const terjualPerUkuran = AWAL[u] - stok[u];
+        card.innerHTML = `<div class="ukuran">${u}</div><div class="harga-card">Rp${HARGA[u].toLocaleString('id-ID')}</div><div class="stok-row"><span>Stok: ${AWAL[u]} - ${terjualPerUkuran}</span><span class="jumlah">${stok[u]}</span><span class="stok-label">Sisa</span></div><div class="progress-wrap"><div class="progress-fill" style="width:${pct}%"></div></div><div class="actions"><button class="btn-back" onclick="back('${u}')" title="Kembalikan 1">↺</button><button class="btn-jual" onclick="jual('${u}')" ${stok[u]<=0?'disabled':''}>Jual</button></div>`;
         grid.appendChild(card);
     });
     const sel = document.getElementById('sizeSelect'); sel.innerHTML = '';
