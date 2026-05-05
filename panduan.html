@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Aplikasi Stok Kaos</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+h1 { text-align: center; font-size: 26px; background: linear-gradient(135deg, #64b5f6, #4caf50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+.sub { text-align: center; color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; }
+.intro { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; margin-bottom: 20px; font-size: 14px; color: #aaa; line-height: 1.6; }
+.link { text-align: center; margin-bottom: 20px; }
+.link a { color: #64b5f6; font-size: 15px; background: rgba(100,181,246,0.1); padding: 8px 20px; border-radius: 10px; text-decoration: none; border: 1px solid rgba(100,181,246,0.2); }
+.link a:hover { background: rgba(100,181,246,0.2); }
+.app-screenshot { text-align: center; margin-bottom: 25px; }
+.app-screenshot img { max-width: 320px; width: 100%; border-radius: 20px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 0 40px rgba(100,181,246,0.1); }
+
+/* Panduan */
+.panduan { display: flex; flex-direction: column; gap: 16px; }
+.item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+.item .num {
+    background: linear-gradient(135deg, #ff0080, #4a00e0);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.item .content { flex: 1; }
+.item .content .title { font-weight: 700; color: #64b5f6; font-size: 15px; margin-bottom: 4px; }
+.item .content .desc { color: #999; font-size: 13px; line-height: 1.5; }
+.item .content .desc span { color: #ffc107; }
+.footer { text-align: center; padding: 30px 0 10px; font-size: 12px; color: #444; }
+</style>
+</head>
+<body>
+
+<h1>📘 Panduan Aplikasi</h1>
+<div class="sub">Stok Kaos — ANNIV 24 KCDj</div>
+
+<div class="intro">
+    Aplikasi ini digunakan untuk mencatat penjualan kaos secara real-time. Data tersimpan otomatis di browser HP/laptop. Link akses bisa dibagikan ke siapa saja.
+</div>
+
+<div class="link">
+    <a href="https://stokkaosanniv-kcdj.netlify.app" target="_blank">🔗 Buka Aplikasi</a>
+</div>
+
+<div class="app-screenshot">
+    <img src="https://i.postimg.cc/htQxktnM/image.png" alt="Tampilan Aplikasi Stok Kaos">
+</div>
+
+<div class="panduan">
+
+<div class="item">
+    <div class="num">1</div>
+    <div class="content">
+        <div class="title">📊 Total Stock Bar</div>
+        <div class="desc">Menampilkan <span>Stok awal (1.000) − Penjualan = Sisa</span> secara otomatis. Angka di sini adalah total dari semua ukuran. Berguna untuk lihat gambaran besar stok keseluruhan.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">2</div>
+    <div class="content">
+        <div class="title">💰 Total Uang Masuk</div>
+        <div class="desc">Menampilkan jumlah pcs yang terjual dan <span>total nominal uang yang sudah masuk</span> (dihitung otomatis dari harga per ukuran). Update setiap kali ada transaksi.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">3</div>
+    <div class="content">
+        <div class="title">📦 Card Stok per Ukuran</div>
+        <div class="desc">Ada <span>8 ukuran: M, L, XL, XXL, XXXL, XXXXL, XXXXXL, XXXXXXL</span>. Setiap card menampilkan:
+        <br>• <span>Harga</span> per pcs (Rp130rb–Rp180rb)
+        <br>• Baris <span>"Stok: Awal − Terjual"</span> — biar tau berapa yang udah laku
+        <br>• <span>Angka sisa</span> (besar) — stok yang tersisa sekarang
+        <br>• <span>Progress bar</span> gradasi magenta-biru — perbandingan visual antar ukuran</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">4</div>
+    <div class="content">
+        <div class="title">🔘 Tombol Jual (Merah)</div>
+        <div class="desc">Klik untuk <span>menjual 1 pcs</span> ukuran tersebut. Stok langsung berkurang. Tombol otomatis <span>nonaktif</span> kalo stok habis. Efek glow dan hover biar lebih jelas pas diklik.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">5</div>
+    <div class="content">
+        <div class="title">↺ Tombol Kembalikan (Undo)</div>
+        <div class="desc"><span>Mengembalikan 1 stok</span> yang sebelumnya terjual. Berguna kalau salah klik atau ada pembatalan. Stok +1, riwayat mencatat sebagai "kembali".</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">6</div>
+    <div class="content">
+        <div class="title">📥 Dropdown Jual (Banyak)</div>
+        <div class="desc">Pilih ukuran dari dropdown + isi jumlah (contoh: 5 pcs) + klik Jual. Berguna untuk <span>transaksi quantity besar</span> sekaligus tanpa klik 5x. Opsi ukuran yang stoknya habis otomatis dicoret.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">7</div>
+    <div class="content">
+        <div class="title">📋 Riwayat Penjualan</div>
+        <div class="desc">Mencatat <span>setiap transaksi</span>:
+        <br>• <span style="color:#64b5f6;">Tanggal</span> (biru)
+        <br>• <span style="color:#fff;">Jam</span> (putih)
+        <br>• Ukuran yang terjual
+        <br>• <span style="color:#ffc107;">Nominal</span> (kuning)
+        <br>Menyimpan hingga 100 riwayat terbaru. Data <span>tidak hilang</span> meskipun browser ditutup.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">8</div>
+    <div class="content">
+        <div class="title">↻ Reset Stok</div>
+        <div class="desc">Tombol pojok kiri bawah untuk <span>mengembalikan semua stok ke awal + menghapus seluruh riwayat</span>. Ada konfirmasi sebelum reset jadi tidak akan terhapus tanpa sengaja.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">9</div>
+    <div class="content">
+        <div class="title">💾 Data Aman di Browser (localStorage)</div>
+        <div class="desc">Semua data penjualan tersimpan di <span>penyimpanan browser HP/laptop</span> masing-masing. Aman selama tidak clear cache. Kalau buka dari HP lain, datanya beda — karena tiap perangkat punya penyimpanan sendiri.</div>
+    </div>
+</div>
+
+<div class="item">
+    <div class="num">10</div>
+    <div class="content">
+        <div class="title">🔄 Auto Deploy (Update Otomatis)</div>
+        <div class="desc">Aplikasi terhubung ke <span>GitHub + Netlify</span>. Setiap ada update dari Kiro, push ke GitHub, Netlify langsung deploy otomatis. Cukup refresh halaman untuk mendapatkan versi terbaru.</div>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">Panduan dibuat oleh Kiro ⚡ · v1.9 · Qber1292</div>
+
+</body>
+</html>
